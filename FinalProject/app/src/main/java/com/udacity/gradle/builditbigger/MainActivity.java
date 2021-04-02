@@ -45,16 +45,29 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void tellJoke(View view)
-    {
-        //Toast.makeText(this, "derp", Toast.LENGTH_SHORT).show();
-        Jokes myJokes = new Jokes();
-        Toast.makeText(this, myJokes.getJoke(), Toast.LENGTH_SHORT).show();
+//    public void tellJoke(View view)
+//    {
+//        //Toast.makeText(this, "derp", Toast.LENGTH_SHORT).show();
+//        Jokes myJokes = new Jokes();
+//        Toast.makeText(this, myJokes.getJoke(), Toast.LENGTH_SHORT).show();
+//
+//        Intent intent = new Intent(this, MainActivity_AndroidJokeLib.class);
+//        intent.putExtra("JOKE", myJokes.getJoke());
+//        startActivity(intent);
+//    }
 
-        Intent intent = new Intent(this, MainActivity_AndroidJokeLib.class);
-        intent.putExtra("JOKE", myJokes.getJoke());
-        startActivity(intent);
+
+
+    public void tellJoke(View view) {
+        new EndpointsAsyncTask(this, new EndpointsAsyncTask.TaskHandler() {
+
+            @Override
+            public void onTaskFinished(String result) {
+                Intent intent = new Intent(MainActivity.this, MainActivity_AndroidJokeLib.class);
+                intent.putExtra("JOKE", result);
+                startActivity(intent);
+            }
+        }).execute();
     }
-
 
 }
