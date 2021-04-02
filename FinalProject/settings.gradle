@@ -1,1 +1,2 @@
+include ':lib_JavaJokes'
 include ':app', ':backend'
