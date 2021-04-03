@@ -4,6 +4,7 @@ apply plugin: 'com.google.cloud.tools.endpoints-framework-client'
 buildscript {
     repositories {
         jcenter()
+        google()
     }
     dependencies {
         classpath 'com.google.cloud.tools:endpoints-framework-gradle-plugin:1.0.2'
@@ -11,45 +12,64 @@ buildscript {
 }
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.3"
-
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.udacity.gradle.builditbigger"
-        minSdkVersion 16
-        targetSdkVersion 26
+        minSdkVersion 28
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(path: ':lib_AndroidJokes')
-    implementation project(path: ':lib_AndroidJokes')
-    implementation project(path: ':lib_AndroidJokes')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     endpointsServer project(path: ':backend', configuration: 'endpoints')
-    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    //implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.google.android.gms:play-services-ads:11.8.0'
     implementation 'com.google.api-client:google-api-client:1.23.0'
     implementation 'com.google.http-client:google-http-client-android:1.23.0'
     implementation 'com.google.code.findbugs:jsr305:3.0.1'
-    implementation project(':lib_JavaJokes')
     implementation project(':lib_AndroidJokes')
-
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-
+//    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+//        exclude group: 'com.android.support', module: 'support-annotations'
+//    })
     testImplementation 'junit:junit:4.12'
+
+//// Core library
+    androidTestImplementation 'androidx.test:core:1.0.0'
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test:rules:1.1.0'
+
+    // Assertions
+    androidTestImplementation 'androidx.test.ext:junit:1.0.0'
+    androidTestImplementation 'androidx.test.ext:truth:1.0.0'
+    androidTestImplementation 'com.google.truth:truth:0.42'
+
+//    // Espresso dependencies
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+//    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.1.0'
+//    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.0'
+//    androidTestImplementation 'androidx.test.espresso:espresso-accessibility:3.1.0'
+//    androidTestImplementation 'androidx.test.espresso:espresso-web:3.1.0'
+//    androidTestImplementation 'androidx.test.espresso.idling:idling-concurrent:3.1.0'
+//
+//    // The following Espresso dependency can be either "implementation"
+//    // or "androidTestImplementation", depending on whether you want the
+//    // dependency to appear on your APK's compile classpath or the test APK
+//    // classpath.
+//    androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.1.0'
 }

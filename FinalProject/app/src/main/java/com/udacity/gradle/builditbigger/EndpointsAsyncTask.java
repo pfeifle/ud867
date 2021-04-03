@@ -3,7 +3,6 @@ package com.udacity.gradle.builditbigger;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Pair;
-import android.widget.Toast;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -43,7 +42,8 @@ class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> 
 
         try {
             //return myApiService.sayJoke().execute();
-            return myApiService.sayHi("Martin").execute().getData();
+           // return myApiService.sayHi("Martin").execute().getData();
+             return myApiService.sayJoke().execute().getData();
         } catch (IOException e) {
             return e.getMessage();
         }
@@ -66,6 +66,7 @@ class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> 
     }
 
     private TaskHandler taskHandler;
+
     public interface TaskHandler {
         void onTaskFinished(String result);
     }

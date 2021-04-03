@@ -2,12 +2,12 @@ package com.udacity.gradle.builditbigger;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
-import com.example.lib_javajokes.Jokes;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.lib_androidjokes.MainActivity_AndroidJokeLib;
 
 
@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
 //        intent.putExtra("JOKE", myJokes.getJoke());
 //        startActivity(intent);
 //    }
-
 
 
     public void tellJoke(View view) {
